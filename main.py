@@ -6,4 +6,9 @@ st.set_page_config(layout="wide")
 df_reviews = pd.read_csv("dataset/customer reviews.csv")
 df_top100_books = pd.read_csv("dataset/Top-100 Trending Books.csv")
 
-df_reviews
+price_max = df_top100_books["book price"].max()
+price_min = df_top100_books["book price"].min()
+
+max_price = st.sidebar.slider("Price range", price_min, price_max)
+df_books = df_top100_books[df_top100_books["book price"] <= max_price]
+df_books
